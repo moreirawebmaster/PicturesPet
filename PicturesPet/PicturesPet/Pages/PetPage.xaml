@@ -1,0 +1,44 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:controls="clr-namespace:DLToolkit.Forms.Controls;assembly=DLToolkit.Forms.Controls.FlowListView"
+             xmlns:forms="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
+             x:Class="PicturesPet.Pages.PetPage">
+  <ContentPage.Content>
+    <controls:FlowListView FlowItemsSource="{Binding Items}"
+                           FlowItemTappedCommand="{Binding ItemTappedCommand}"
+                           FlowLoadingCommand="{Binding LoadingCommand}"
+                           FlowIsLoadingInfinite="{Binding IsLoadingInfinite}"
+                           FlowTotalRecords="{Binding TotalRecords}" 
+                           FlowIsLoadingInfiniteEnabled="true"
+                           HasUnevenRows="true"
+                           FlowColumnCount="3"
+                           SeparatorVisibility="None" 
+                           RowHeight="120">
+
+        <controls:FlowListView.FlowLoadingTemplate>
+            <DataTemplate>
+                <ViewCell>
+                    <Label
+                        HorizontalTextAlignment="Center"
+                        VerticalTextAlignment="Center"
+                        TextColor="Black"
+                        Text="Loading..."
+                    ></Label>
+                </ViewCell>
+            </DataTemplate>
+        </controls:FlowListView.FlowLoadingTemplate>
+
+      <controls:FlowListView.FlowColumnTemplate>
+        <DataTemplate>
+          <forms:CachedImage HorizontalOptions="Center" VerticalOptions="Center"
+                             Aspect="Fill"
+                             WidthRequest="160" HeightRequest="120" DownsampleToViewSize="true"
+                             Source="{Binding Url}" />
+        </DataTemplate>
+      </controls:FlowListView.FlowColumnTemplate>
+
+    </controls:FlowListView>
+  </ContentPage.Content>
+</ContentPage>
